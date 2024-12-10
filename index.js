@@ -32,10 +32,10 @@ app.post("/submit", async (req, res) => {
       airtableBaseUrl,
       {
         fields: {
-          Name: name,
-          Email: email,
-          Subject: subject,
-          Comment: comment,
+          name: name,
+          email: email,
+          subject: subject,
+          comment: comment,
         },
       },
       {
