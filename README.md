@@ -151,6 +151,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 - [Airtable API Documentation](https://airtable.com/api)
 - [Render Hosting Service](https://render.com/)
+- [Airtable API Tutorial | For Beginners](https://youtu.be/ncuVAqfNvAM)
 ```
 
 ### Next Steps
