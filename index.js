@@ -9,7 +9,7 @@ const PORT = 5000;
 // Enable CORS for your frontend
 app.use(
   cors({
-    origin: "https://themaryanjuguna.github.io/portfolio", // Allow only your frontend
+    origin: "https://themaryanjuguna.github.io/", // Allow only your frontend
     methods: ["POST", "GET", "OPTIONS"], // Allowed HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
   })
@@ -52,9 +52,10 @@ app.post("/", async (req, res) => {
       },
       {
         headers: {
-          Authorization: airtablePat,
+          Authorization: `Bearer ${airtablePat}`, // Ensure the token is prefixed with "Bearer"
           "Content-Type": "application/json",
-        },
+          "Access-Control-Allow-Origin": "*", // This can be added if you're configuring CORS on the server
+      },
       }
     );
 
