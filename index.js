@@ -7,6 +7,11 @@ const PORT = 5000;
 
 app.use(express.json()); // Middleware to parse JSON requests
 app.use(cors()); // Enable CORS for all routes
+app.use(function (request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.post("/submit", async (req, res) => {
   try {
