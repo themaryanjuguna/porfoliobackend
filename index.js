@@ -9,7 +9,7 @@ const PORT = 5000;
 app.use(cors({origin: "https://themaryanjuguna.github.io"})); // Enable CORS for all routes
 app.use(express.json()); // Middleware to parse JSON requests
 
-app.post("/submit", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     const { name, email, subject, comment } = req.body;
 
