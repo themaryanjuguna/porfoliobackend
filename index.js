@@ -34,7 +34,7 @@ app.post("/submit", async (req, res) => {
 
     // Submit data to Airtable
     const airtableResponse = await axios.post(
-      airtableBaseUrl,
+      `${airtableBaseUrl}`,
       {
         fields: {
           name: name,
@@ -45,7 +45,7 @@ app.post("/submit", async (req, res) => {
       },
       {
         headers: {
-          Authorization: airtablePat,
+          Authorization: `Bearer ${airtablePat}`,
           "Content-Type": "application/json",
         },
       }
