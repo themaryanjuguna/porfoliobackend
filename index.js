@@ -5,9 +5,9 @@ const cors = require("cors"); // CORS for frontend compatibility
 const app = express();
 const PORT = 5000;
 
+// app.use(cors()); // Enable CORS for all routes
+app.use(cors({origin: "https://themaryanjuguna.github.io"})); // Enable CORS for all routes
 app.use(express.json()); // Middleware to parse JSON requests
-app.use(cors()); // Enable CORS for all routes
-// app.use(cors({origin: "https://themaryanjuguna.github.io/portfolio/"})); // Enable CORS for all routes
 
 app.post("/submit", async (req, res) => {
   try {
