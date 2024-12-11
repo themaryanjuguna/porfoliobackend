@@ -6,7 +6,8 @@ const app = express();
 const PORT = 5000;
 
 app.use(express.json()); // Middleware to parse JSON requests
-app.use(cors()); // Enable CORS for all routes
+// app.use(cors()); // Enable CORS for all routes
+app.use(cors({ origin: "https://themaryanjuguna.github.io" }));
 app.use(function (request, response, next) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -34,28 +35,28 @@ app.post("/submit", async (req, res) => {
 
     // Submit data to Airtable
     const airtableResponse = await axios.post(
-      `${airtableBaseUrl}`,
+      process.env.AIRTABLE_BASE_URL,
       {
         fields: {
-          name: name,
-          email: email,
-          subject: subject,
-          comment: comment,
+          name,
+          email,
+          subject,
+          comment,
         },
       },
       {
         headers: {
-          Authorization: `Bearer ${airtablePat}`,
+          Authorization: `Bearer ${process.env.AIRTABLE_PAT}`,
           "Content-Type": "application/json",
         },
       }
     );
 
     // Respond with success
-    res.json({ success: true, data: airtableResponse.data });
+    res.status(200).json({ success: true, data: airtableResponse.data });
   } catch (error) {
-    console.error("Error:", error.response?.data || error.message);
-    res.status(500).json({ success: false, error: "Submission failed." });
+    console.error("Airtable Error:", error.response?.data || error.message);
+    res.status(500).json({ success: false, error: "Failed to submit data to Airtable." });
   }
 });
 
