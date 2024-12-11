@@ -10,15 +10,13 @@ app.use(cors({origin: "https://themaryanjuguna.github.io"})); // Enable CORS for
 app.use(express.json()); // Middleware to parse JSON requests
 
 app.post("/", async (req, res) => {
-  try {
-    const { name, email, subject, comment } = req.body;
+  console.log("Received request body:", req.body); // Log incoming payload
 
-    // Validate incoming data
-    if (!name || !email || !subject || !comment) {
-      return res
-        .status(400)
-        .json({ success: false, error: "All fields are required." });
-    }
+  const { name, email, subject, comment } = req.body;
+
+  if (!name || !email || !subject || !comment) {
+    return res.status(400).json({ success: false, error: "All fields are required." });
+  }
 
     // Airtable API details
     const airtableBaseUrl = process.env.AIRTABLE_BASE_URL;
@@ -49,7 +47,7 @@ app.post("/", async (req, res) => {
 
     // Respond with success
     res.json({ success: true, data: airtableResponse.data });
-  } catch (error) {
+  // } catch (error) {
     console.error("Error:", {
       message: error.message,
       response: error.response?.data,
@@ -58,7 +56,8 @@ app.post("/", async (req, res) => {
     // console.error("Error:", error.response?.data || error.message);
     res.status(500).json({ success: false, error: "Submission failed." });
   }
-});
+// }
+);
 
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
