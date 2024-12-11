@@ -30,7 +30,7 @@ app.post("/", async (req, res) => {
 
     // Submit data to Airtable
     const airtableResponse = await axios.post(
-      airtableBaseUrl,
+      "https://porfoliobackend-3ja5.onrender.com/",
       {
         fields: {
           name: name,
@@ -50,7 +50,12 @@ app.post("/", async (req, res) => {
     // Respond with success
     res.json({ success: true, data: airtableResponse.data });
   } catch (error) {
-    console.error("Error:", error.response?.data || error.message);
+    console.error("Error:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
+    // console.error("Error:", error.response?.data || error.message);
     res.status(500).json({ success: false, error: "Submission failed." });
   }
 });
