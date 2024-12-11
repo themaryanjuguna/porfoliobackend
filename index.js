@@ -9,7 +9,7 @@ const PORT = 5000;
 // Enable CORS for your frontend
 app.use(
   cors({
-    origin: "https://themaryanjuguna.github.io", // Allow only your frontend
+    origin: "https://themaryanjuguna.github.io/portfolio", // Allow only your frontend
     methods: ["POST", "GET", "OPTIONS"], // Allowed HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
   })
