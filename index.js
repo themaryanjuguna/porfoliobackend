@@ -53,8 +53,8 @@ app.post("/", async (req, res) => {
       {
         headers: {
           Authorization: `Bearer ${airtablePat}`, // Ensure the token is prefixed with "Bearer"
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*", // This can be added if you're configuring CORS on the server
+          "Content-Type": "application/json", 
+          "Access-Control-Allow-Origin": "https://themaryanjuguna.github.io", // This can be added if you're configuring CORS on the server
       },
       }
     );
